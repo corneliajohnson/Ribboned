@@ -21,4 +21,4 @@ Youtube
 ![image](https://user-images.githubusercontent.com/38992646/104128824-c5192c00-5337-11eb-8920-43e22e8b5a09.png)
 
 ## ERD 
-![image](https://user-images.githubusercontent.com/38992646/104129734-7c637200-533b-11eb-971a-83c2cfa37c45.png)
+![image](https://user-images.githubusercontent.com/38992646/104130083-c39e3280-533c-11eb-8b7b-2e9aca0b76dd.png)
