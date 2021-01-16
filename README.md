@@ -12,13 +12,13 @@ Ribboned is an application where users can reference notes about a videos. The u
 The video will pause if the user stops to take notes and only continue after. Based on the type of videoes the user saves there will be suggested videoes based on that topic. 
 
 ### Built With
-Technologies: Reacjs, C#/.Net Core, Entity Framwork, Firebase, Couldinary, ReactStrap
+Technologies: Reacjs, C#/.Net Core, Entity Framwork, Firebase, Couldinary, ReactStrap, CSS
 
 ### APIs 
 Youtube
 
 ## Wire Frame
-![image](https://user-images.githubusercontent.com/38992646/104128824-c5192c00-5337-11eb-8920-43e22e8b5a09.png)
+![image](https://user-images.githubusercontent.com/38992646/104816748-0bb0cf80-57eb-11eb-887a-b497dfb0be89.png)
 
 ## ERD 
 ![image](https://user-images.githubusercontent.com/38992646/104816683-c2f91680-57ea-11eb-9411-e448694050b0.png)
