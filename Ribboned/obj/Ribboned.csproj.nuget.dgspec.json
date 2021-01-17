@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CJ\\workspace\\csharp\\Ribboned\\Ribboned\\Ribboned.csproj": {}
+    "C:\\Users\\CJ\\workspace\\csharp\\ribboned\\Ribboned\\Ribboned.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CJ\\workspace\\csharp\\Ribboned\\Ribboned\\Ribboned.csproj": {
+    "C:\\Users\\CJ\\workspace\\csharp\\ribboned\\Ribboned\\Ribboned.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CJ\\workspace\\csharp\\Ribboned\\Ribboned\\Ribboned.csproj",
+        "projectUniqueName": "C:\\Users\\CJ\\workspace\\csharp\\ribboned\\Ribboned\\Ribboned.csproj",
         "projectName": "Ribboned",
-        "projectPath": "C:\\Users\\CJ\\workspace\\csharp\\Ribboned\\Ribboned\\Ribboned.csproj",
+        "projectPath": "C:\\Users\\CJ\\workspace\\csharp\\ribboned\\Ribboned\\Ribboned.csproj",
         "packagesPath": "C:\\Users\\CJ\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CJ\\workspace\\csharp\\Ribboned\\Ribboned\\obj\\",
+        "outputPath": "C:\\Users\\CJ\\workspace\\csharp\\ribboned\\Ribboned\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

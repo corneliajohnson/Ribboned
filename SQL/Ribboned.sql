@@ -9,7 +9,6 @@ GO
 DROP TABLE IF EXISTS [UserProfile];
 DROP TABLE IF EXISTS [Ribbon];
 DROP TABLE IF EXISTS [Snag];
-DROP TABLE IF EXISTS [RibbonSnag];
 DROP TABLE IF EXISTS [Category];
 DROP TABLE IF EXISTS [Source];
 
@@ -20,22 +19,16 @@ CREATE TABLE [Ribbon] (
   [Decription] nvarchar (255) NOT NULL,
   [CategoryId] integer NOT NULL,
   [SourceId] integer NOT NULL,
-  [UserProfileIdId] integer NOT NULL,
+  [UserProfileId] integer NOT NULL,
   [URL] nvarchar (555) NOT NULL,
   [DateCreated] datetime NOT NULL,
   [DurationSeconds] integer
 )
 GO
 
-CREATE TABLE [RibbonSnag] (
-  [Id] integer PRIMARY KEY identity NOT NULL,
-  [SnagId] integer NOT NULL,
-  [RibbonId] integer NOT NULL
-)
-GO
-
 CREATE TABLE [Snag] (
   [Id] integer PRIMARY KEY identity NOT NULL,
+  [RibbonId] integer NOT NULL,
   [DateCreated] datetime NOT NULL,
   [Note] nvarchar (1000) NOT NULL,
   [Seconds] integer
@@ -63,19 +56,16 @@ CREATE TABLE [UserProfile] (
 )
 GO
 
-ALTER TABLE [RibbonSnag] ADD FOREIGN KEY ([SnagId]) REFERENCES [Snag] ([Id])
-GO
-
-ALTER TABLE [RibbonSnag] ADD FOREIGN KEY ([RibbonId]) REFERENCES [Ribbon] ([Id])
-GO
-
 ALTER TABLE [Ribbon] ADD FOREIGN KEY ([CategoryId]) REFERENCES [Category] ([Id])
 GO
 
 ALTER TABLE [Ribbon] ADD FOREIGN KEY ([SourceId]) REFERENCES [Source] ([Id])
 GO
 
-ALTER TABLE [Ribbon] ADD FOREIGN KEY ([UserProfileIdId]) REFERENCES [UserProfile] ([Id])
+ALTER TABLE [Ribbon] ADD FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
+GO
+
+ALTER TABLE [Snag] ADD FOREIGN KEY ([RibbonId]) REFERENCES [Ribbon] ([Id])
 GO
 
 
