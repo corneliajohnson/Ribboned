@@ -5,18 +5,18 @@ using System.Linq;
 
 namespace Ribboned.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+    public class SourceRepository : ISourceRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoryRepository(ApplicationDbContext context)
+        public SourceRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public List<Category> GetAll()
+        public List<Source> GetAll()
         {
-            return _context.Category.ToList();
+            return _context.Source.ToList();
         }
     }
 }

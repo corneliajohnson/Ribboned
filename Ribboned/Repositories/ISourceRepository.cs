@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Ribboned.Repositories
 {
-    public interface ICategoryRepository
+    public interface ISourceRepository
     {
-        List<Category> GetAll();
+        List<Source> GetAll();
     }
 }
