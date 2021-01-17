@@ -4,6 +4,8 @@ using Ribboned.Repositories;
 
 namespace Ribboned.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class RibbonController : Controller
     {
         private readonly IRibbonRepository _ribbonRepo;

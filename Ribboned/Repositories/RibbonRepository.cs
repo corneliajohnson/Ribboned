@@ -22,7 +22,9 @@ namespace Ribboned.Repositories
 
         public Ribbon GetById(int id)
         {
-            return _context.Ribbon.FirstOrDefault(r => r.Id == id);
+            return _context.Ribbon
+                .Include(r => r.UserProfile)
+                .FirstOrDefault(r => r.Id == id);
         }
 
         public void Add(Ribbon ribbon)

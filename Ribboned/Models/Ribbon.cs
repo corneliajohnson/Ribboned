@@ -14,8 +14,6 @@ namespace Ribboned.Models
         public string URL { get; set; }
         public DateTime DateCreated { get; set; }
         public int DurationSeconds { get; set; }
-        public Category Category { get; set; }
-        public Source Source { get; set; }
         public UserProfile UserProfile { get; set; }
     }
 }
