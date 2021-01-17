@@ -18,8 +18,9 @@ Technologies: Reacjs, C#/.Net Core, Entity Framwork, Firebase, Couldinary, React
 Youtube
 
 ## Wire Frame
-![image](https://user-images.githubusercontent.com/38992646/104843300-de6e2b00-5897-11eb-83b8-d9457fecc2b1.png)
+![image](https://user-images.githubusercontent.com/38992646/104844986-13cb4680-58a1-11eb-8aea-aaa915b812c5.png)
+
 
 ## ERD 
-![Ribboned](https://user-images.githubusercontent.com/38992646/104842596-b7fac080-5894-11eb-9f52-351d8ecb6e6c.png)
+![Ribboned (1)](https://user-images.githubusercontent.com/38992646/104844995-20e83580-58a1-11eb-9a63-0db324e85295.png)
 
