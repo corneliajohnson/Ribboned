@@ -23,6 +23,7 @@ namespace Ribboned
         {
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<ISourceRepository, SourceRepository>();
+            services.AddTransient<IUserProfileRepository, UserProfileRepository>();
 
 
             services.AddDbContext<ApplicationDbContext>(options =>
