@@ -25,6 +25,7 @@ namespace Ribboned
             services.AddTransient<ISourceRepository, SourceRepository>();
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IRibbonRepository, RibbonRepository>();
+            services.AddTransient<ISnagRepository, SnagRepository>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

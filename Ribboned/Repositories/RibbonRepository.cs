@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Ribboned.Repositories
 {
-    public class RibbonRepository : IRibbonRepository
+    public class RibbonRepository : IRibbonRepository, IRibbonRepository1
     {
         private readonly ApplicationDbContext _context;
 
