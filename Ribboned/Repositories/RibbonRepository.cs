@@ -24,6 +24,7 @@ namespace Ribboned.Repositories
         {
             return _context.Ribbon
                 .Include(r => r.UserProfile)
+                .Include(r => r.Snags)
                 .FirstOrDefault(r => r.Id == id);
         }
 
@@ -41,8 +42,10 @@ namespace Ribboned.Repositories
 
         public void Delete(int id)
         {
-            var ribbon = GetById(id);
-            _context.Ribbon.Remove(ribbon);
+            var ribonToDelete = _context.Ribbon
+                .Where(r => r.Id == id) //Find the ribbon by id
+                .Include(r => r.Snags); //all snags connectes to Ribbon
+            _context.Ribbon.RemoveRange(ribonToDelete);
             _context.SaveChanges();
         }
     }

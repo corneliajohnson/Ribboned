@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Ribboned.Models
 {
@@ -14,5 +15,6 @@ namespace Ribboned.Models
         public DateTime DateCreated { get; set; }
         public int DurationSeconds { get; set; }
         public UserProfile UserProfile { get; set; }
+        public List<Snag> Snags { get; set; }
     }
 }
