@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uiCvFBFqVGvE+o2YgrN7Kh9EK3EShSUt8OMZC6SIfkFRHZwhC2CAQg16VNRUvFR01vN0AQSVJsysvBZYfvh5hw==",
+  "dgSpecHash": "4RrRRgVmQ3no8jhlmE+blPk/5s/wgXEgea8dqOB5WHRMBHAGeVW0LZRu88nQbkdprH4SylXE8OXIeDHzUSK6mw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\CJ\\workspace\\csharp\\ribboned\\Ribboned\\Ribboned.csproj",
+  "projectFilePath": "C:\\Users\\CJ\\workspace\\csharp\\Ribboned\\Ribboned\\Ribboned.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CJ\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\CJ\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.0\\microsoft.aspnetcore.authentication.jwtbearer.5.0.0.nupkg.sha512",

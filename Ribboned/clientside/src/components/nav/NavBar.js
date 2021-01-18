@@ -8,27 +8,22 @@ export const NavBar = (props) => {
       <ul className="navbar">
         <li className="navbar__item active">
           <Link className="navbar__link" to="/">
-            NSS Kennels
+            Account
           </Link>
         </li>
         <li className="navbar__item">
-          <Link className="navbar__link" to="/locations">
-            Locations
+          <Link className="navbar__link" to="/create/ribbon">
+            Add Ribbon
           </Link>
         </li>
         <li className="navbar__item">
-          <Link className="navbar__link" to="/animals">
-            Animals
+          <Link className="navbar__link" to="/ribbons">
+            My Ribbons
           </Link>
         </li>
         <li className="navbar__item">
-          <Link className="navbar__link" to="/customers">
-            Customers
-          </Link>
-        </li>
-        <li className="navbar__item">
-          <Link className="navbar__link" to="/employees">
-            Employees
+          <Link className="navbar__link" to="/login">
+            Log Out
           </Link>
         </li>
       </ul>
