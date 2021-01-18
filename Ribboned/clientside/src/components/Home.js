@@ -1,7 +1,11 @@
 import React from "react";
+import { YouTubeSearch } from "./YouTube/YouTubeSearch";
 
 export const Home = () => (
   <>
-    <h2>Ribbioned</h2>
+    <div className="container">
+      <YouTubeSearch />
+      <h2>Ribbioned</h2>
+    </div>
   </>
 );
