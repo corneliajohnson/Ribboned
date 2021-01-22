@@ -17,6 +17,19 @@ Technologies: Reacjs, C#/.Net Core, Entity Framwork, Firebase, Couldinary, React
 ### APIs 
 Youtube
 
+#### MVP
+ - Create an account
+ - Upload videos from computer/reference youtube videos
+ - CRUD for Ribbons and Snags
+ - Display Account Information
+ - Play video from snag click
+ 
+ #### Strech Goals
+ - Recommend videos based on history
+ - Search For videos
+ - Edit user account and add data about usage
+ - Carosel for recommended videos
+
 ## Wire Frame
 ![image](https://user-images.githubusercontent.com/38992646/104844986-13cb4680-58a1-11eb-8aea-aaa915b812c5.png)
 
