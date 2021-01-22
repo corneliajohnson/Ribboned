@@ -28,6 +28,7 @@ Youtube
  - Recommend videos based on history
  - Search For videos
  - Edit user account and add data about usage
+ - Add a view more for recent snags on homepage (show 10 more)
  - Carosel for recommended videos
 
 ## Wire Frame
