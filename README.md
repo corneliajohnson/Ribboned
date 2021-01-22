@@ -1,4 +1,4 @@
-![RibbonedWordOnly](https://user-images.githubusercontent.com/38992646/104129001-96e81c00-5338-11eb-937b-7b008866719e.png)
+![image](https://user-images.githubusercontent.com/38992646/105553768-0c0e0680-5cd4-11eb-94a6-d17b270a88e3.png)
 
 Video Note Taking Application
 
