@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ribboned.Data;
 using Ribboned.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Ribboned.Repositories
@@ -12,6 +13,11 @@ namespace Ribboned.Repositories
         public UserProfileRepository(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public List<UserProfile> GetAll()
+        {
+            return _context.UserProfile.ToList();
         }
 
         public void Add(UserProfile up)

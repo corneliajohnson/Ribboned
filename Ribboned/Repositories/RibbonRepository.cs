@@ -6,13 +6,17 @@ using System.Linq;
 
 namespace Ribboned.Repositories
 {
-    public class RibbonRepository : IRibbonRepository, IRibbonRepository1
+    public class RibbonRepository : IRibbonRepository
     {
         private readonly ApplicationDbContext _context;
 
         public RibbonRepository(ApplicationDbContext context)
         {
             _context = context;
+        }
+        public List<Ribbon> GetAll()
+        {
+            return _context.Ribbon.Include(p => p.UserProfile).ToList();
         }
 
         public List<Ribbon> GetByUserId(int id)
@@ -42,10 +46,11 @@ namespace Ribboned.Repositories
 
         public void Delete(int id)
         {
-            var ribonToDelete = _context.Ribbon
-                .Where(r => r.Id == id) //Find the ribbon by id
-                .Include(r => r.Snags); //all snags connectes to Ribbon
-            _context.Ribbon.RemoveRange(ribonToDelete);
+            var relatedSnags = _context.Snag.Where(s => s.RibbonId == id);
+            _context.Snag.RemoveRange(relatedSnags);
+
+            var ribbon = GetById(id);
+            _context.Ribbon.Remove(ribbon);
             _context.SaveChanges();
         }
     }
