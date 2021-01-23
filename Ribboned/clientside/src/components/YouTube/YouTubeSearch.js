@@ -4,11 +4,11 @@ import { Input } from "reactstrap";
 export const YouTubeSearch = () => {
   return (
     <>
-      <div className="align-items-center">
+      <div>
         YouTube Search:
         <Input
           type="text"
-          className="w-50 input--wide"
+          className="w-100 input--wide"
           placeholder="Search... "
         />
       </div>
