@@ -14,6 +14,40 @@ namespace Ribboned.Tests
             AddSampleData();
         }
 
+        //Ribbon Tests
+        [Fact] 
+        public void RibbonRepository_Can_Add_New_Ribbon()
+        {
+            var repo = new RibbonRepository(_context);
+            var startingRibbons = repo.GetByUserId(1);
+            var startingCount = startingRibbons.Count;
+
+            // create new Ribbon
+            var newRibbon = new Ribbon()
+            {
+                Title = "Test Video 4",
+                Decription = "decription of test video 4",
+                CategoryId = 2,
+                SourceId = 2,
+                UserProfileId = 1,
+                URL = "www.url.com",
+                DateCreated = DateTime.Now - TimeSpan.FromDays(365),
+                DurationSeconds = 500
+            };
+
+            //add new ribbon
+            repo.Add(newRibbon);
+
+            //Get all ribbons again
+            var resultingRibbons = repo.GetByUserId(1);
+            var resultingCount = resultingRibbons.Count;
+
+            //Check that one has been added
+            Assert.NotEqual(0, newRibbon.Id);
+            Assert.Equal(startingCount + 1, resultingCount);
+        }
+
+
         //Add sample data
         public void AddSampleData()
         {
@@ -34,6 +68,7 @@ namespace Ribboned.Tests
             };
             _context.Add(user1);
             _context.Add(user2);
+            _context.SaveChanges();
 
             var source1 = new Source()
             {
@@ -46,6 +81,7 @@ namespace Ribboned.Tests
             };
             _context.Add(source1);
             _context.Add(source2);
+            _context.SaveChanges();
 
             var category1 = new Category()
             {
@@ -58,6 +94,7 @@ namespace Ribboned.Tests
             };
             _context.Add(category1);
             _context.Add(category2);
+            _context.SaveChanges();
 
             var ribbon1 = new Ribbon()
             {
@@ -96,6 +133,7 @@ namespace Ribboned.Tests
             _context.Add(ribbon1);
             _context.Add(ribbon2);
             _context.Add(ribbon3);
+            _context.SaveChanges();
 
             var snag1 = new Snag()
             {
