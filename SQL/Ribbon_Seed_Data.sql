@@ -40,22 +40,15 @@ SET  IDENTITY_INSERT [Source] OFF
 
 SET IDENTITY_INSERT [Snag] ON
 INSERT INTO [Snag]
-([Id], [DateCreated], [Note], [Seconds])
-VALUES (1, '2020-06-12', 'Note One', 30),
-(2, '2020-06-13', 'Note Two', 45),
-(3, '2020-06-14', 'Note Free', 65);
+([Id], [RibbonId], [DateCreated], [Note], [Seconds])
+VALUES (1, 1,'2020-06-12', 'Note One', 30),
+(2,1, '2020-06-13', 'Note Two', 45),
+(3,2, '2020-06-14', 'Note Free', 65);
 SET IDENTITY_INSERT [Snag] OFF
 
 SET IDENTITY_INSERT [Ribbon] ON
 INSERT INTO [Ribbon]
-([Id], [Title], [Decription],[CategoryId],[SourceId],[UserProfileIdId],[URL],[DateCreated],[DurationSeconds])
-VALUES (1, 'Web Development In 2021', 'Decription', 1, 2, 1, 'https://youtu.be/MLIKTBvgAGY', '2020-03-15', null),
-(2, '$37K to $125K+ by teaching myself to code and becoming a software engineer', 'Decription', 1, 2, 1, 'https://youtu.be/NyCyknm_n8M', '2020-03-15', null);
+([Id], [Title], [Decription],[CategoryId],[SourceId],[UserProfileId],[URL],[DateCreated],[DurationSeconds])
+VALUES (1, 'Web Development In 2021', 'Decription', 1, 2, 1, 'https://youtu.be/MLIKTBvgAGY', '2020-03-15', 500),
+(2, '$37K to $125K+ by teaching myself to code and becoming a software engineer', 'Decription', 1, 2, 1, 'https://youtu.be/NyCyknm_n8M', '2020-03-15', 500);
 SET IDENTITY_INSERT [Ribbon] OFF
-
-SET IDENTITY_INSERT [RibbionSnag] ON
-INSERT INTO [RibbonSnag] 
-([Id], [RibbonId], [SnagId])
-VALUES (1, 1, 1),
-(2, 2, 1);
-SET IDENTITY_INSERT [RibbionSnag] OFF
