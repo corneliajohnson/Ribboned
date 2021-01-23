@@ -47,6 +47,93 @@ namespace Ribboned.Tests
             Assert.Equal(startingCount + 1, resultingCount);
         }
 
+        [Fact]
+        public void User_Can_Delete_Ribbon_With_Snag()
+        {
+            var ribbonwithSnag = 1;
+            var repo = new RibbonRepository(_context);
+
+            // Attempt to delete it
+            repo.Delete(ribbonwithSnag);
+
+            // Now attempt to get it
+            var result = repo.GetById(ribbonwithSnag);
+
+            Assert.Null(result);
+        }
+
+        //Snag Tests
+        [Fact]
+        public void User_Can_Add_New_Snag()
+        {
+            var repo = new SnagRepository(_context);
+            var startingSnags = repo.GetByRibbon(1);
+            var startingCount = startingSnags.Count;
+
+            var newSnag = new Snag()
+            {
+                RibbonId = 1,
+                DateCreated = DateTime.Now - TimeSpan.FromDays(365),
+                Note = "snag note 1",
+                Seconds = 70
+            };
+
+            //add new snag
+            repo.Add(newSnag);
+
+            //Get all snags again
+            var resultingRibbons = repo.GetByRibbon(1);
+            var resultingCount = resultingRibbons.Count;
+
+            //Check that one has been added
+            Assert.NotEqual(0, newSnag.Id);
+            Assert.Equal(startingCount + 1, resultingCount);
+        }
+
+        [Fact]
+        public void User_Can_Delete_Snag()
+        {
+            var snag = 1;
+            var repo = new SnagRepository(_context);
+
+            // Attempt to delete it
+            repo.Delete(snag);
+
+            // Now attempt to get it
+            var result = repo.GetById(snag);
+
+            Assert.Null(result);
+        }
+
+        //UserProfile Test
+        [Fact]
+        public void User_Can_Add_UserProfile()
+        {
+            var repo = new UserProfileRepository(_context);
+            var startingUsers = repo.GetAll();
+            var startingCount = startingUsers.Count;
+
+            var newUser = new UserProfile()
+            {
+                UserName = "Stewie",
+                Email = "stewie@gmail.com",
+                ImageUrl = "image.jpeg",
+                FirebaseUserId = "TEST_FIREBASE_UID_2"
+            };
+
+            //add new user
+            repo.Add(newUser);
+
+            //Get all snags again
+            var resultingUsers = repo.GetAll();
+            var resultingCount = resultingUsers.Count;
+
+            //Check that one has been added
+            Assert.NotEqual(0, newUser.Id);
+            Assert.Equal(startingCount + 1, resultingCount);
+        }
+
+
 
         //Add sample data
         public void AddSampleData()
