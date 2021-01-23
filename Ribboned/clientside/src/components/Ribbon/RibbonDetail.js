@@ -22,6 +22,10 @@ export const RibbonDetail = () => {
     setState({ ...state, playing: !state.playing });
   };
 
+  const handlePlay = () => {
+    setState({ ...state, playing: true });
+  };
+
   //format time
   const format = (seconds) => {
     if (isNaN(seconds)) {
@@ -60,6 +64,11 @@ export const RibbonDetail = () => {
     setSnags(snagCopy);
   };
 
+  const handleSeekChange = (e, newValue) => {
+    console.log({ newValue });
+    setState({ ...state, played: parseFloat(newValue / 100) });
+  };
+
   return (
     <>
       <div className="container ">
@@ -67,13 +76,15 @@ export const RibbonDetail = () => {
         <div>
           <div className="d-flex justify-content-center">
             <ReactPlayer
+              onSeek={handleSeekChange}
               ref={playerRef}
               // muted={true}
               onPause={paused}
               playing={playing}
               onProgress={handleProgress}
               controls={true}
-              url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+              //url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+              url="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
             />
           </div>
           <div className="text-center m-3">
@@ -97,7 +108,18 @@ export const RibbonDetail = () => {
                 {snags.map((snag) => (
                   <>
                     <div class="list-group-item list-group-item-actions">
-                      snag at {snag.display}
+                      <Button
+                        className="btn btn-link"
+                        onClick={() => {
+                          //go to seconds stamp of video
+                          playerRef.current.seekTo(snag.time);
+                          //play video
+                          handlePlay();
+                        }}
+                      >
+                        {snag.display}
+                      </Button>
+                      Snag Note
                     </div>
                   </>
                 ))}
