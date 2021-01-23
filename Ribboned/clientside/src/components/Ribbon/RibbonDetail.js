@@ -5,15 +5,16 @@ import { Button } from "reactstrap";
 export const RibbonDetail = () => {
   const [state, setState] = useState({
     playing: false,
+    paused: false,
     duration: 0,
   });
   const [timeDisplayFormat, setTimeDisplayformat] = useState("normal");
-  const [bookmarks, setBookmarks] = useState([]);
+  const [snags, setSnags] = useState([]);
   const { playing } = state;
+  const { paused } = state;
 
   //refs
   const playerRef = useRef(null);
-  const controlsRef = useRef(null);
   const canvasRef = useRef(null);
 
   //play pause toggle
@@ -49,13 +50,14 @@ export const RibbonDetail = () => {
     }
   };
 
-  const addBookmark = () => {
-    const bookmarksCopy = [...bookmarks];
-    bookmarksCopy.push({
+  //add info for snag
+  const addSnag = () => {
+    const snagCopy = [...snags];
+    snagCopy.push({
       time: playerRef.current.getCurrentTime(),
       display: format(playerRef.current.getCurrentTime()),
     });
-    setBookmarks(bookmarksCopy);
+    setSnags(snagCopy);
   };
 
   return (
@@ -67,6 +69,7 @@ export const RibbonDetail = () => {
             <ReactPlayer
               ref={playerRef}
               // muted={true}
+              onPause={paused}
               playing={playing}
               onProgress={handleProgress}
               controls={true}
@@ -76,35 +79,31 @@ export const RibbonDetail = () => {
           <div className="text-center m-3">
             <Button
               className="btn btn-lg btn-secondary w-50"
-              onClick={handlePlayPause}
-              onClick={addBookmark}
+              onClick={() => {
+                handlePlayPause();
+                addSnag();
+              }}
             >
               {playing ? `Add Snag ${timeDisplayFormat}` : "Continue"}
             </Button>
           </div>
           {/* Snags */}
-          <div className="content-aldin-center m-3">
-            <h3>Snags</h3>
-            {bookmarks.map((bookmark, index) => (
-              <>
-                <div key={index} item>
-                  <div
-                    onClick={() => {
-                      playerRef.current.seekTo(bookmark.time);
-                      controlsRef.current.style.visibility = "visible";
-
-                      setTimeout(() => {
-                        controlsRef.current.style.visibility = "hidden";
-                      }, 1000);
-                    }}
-                    elevation={3}
-                  >
-                    <div>bookmark at {bookmark.display}</div>
-                  </div>
+          <div className="row p-5">
+            <div className="col align-self-center">
+              <div class="list-group">
+                <div class="list-group-item list-group-item-action active">
+                  Ribbon Snags
                 </div>
-              </>
-            ))}
-            ;
+                {snags.map((snag) => (
+                  <>
+                    <div class="list-group-item list-group-item-actions">
+                      snag at {snag.display}
+                    </div>
+                  </>
+                ))}
+                ;
+              </div>
+            </div>
           </div>
         </div>
         <canvas ref={canvasRef} />
