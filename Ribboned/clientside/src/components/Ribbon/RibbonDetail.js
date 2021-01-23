@@ -71,7 +71,7 @@ export const RibbonDetail = () => {
 
   return (
     <>
-      <div className="container ">
+      <div className="container">
         <h1 className="text-center">Ribbon Title</h1>
         <div>
           <div className="d-flex justify-content-center">

@@ -6,7 +6,7 @@ import { List } from "reactstrap";
 
 export const NavBar = (props) => {
   return (
-    <nav className=" text-left">
+    <nav>
       <List className="navbar">
         <li className="navbar__item active fixed-top">
           <Link className="navbar__link" to="/account m-5">
