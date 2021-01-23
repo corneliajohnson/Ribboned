@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+.navbar {
+  flex-direction: column;
+}
+
 nav {
   background-color: #fff;
   height: 100vh;
@@ -10,6 +14,7 @@ nav {
   position: fixed;
   transform: translateX(-300px);
   transition: transform 0.3s ease-in-out;
+  border-right: 1px #000 solid;
 }
 
 nav:after {
@@ -25,4 +30,29 @@ nav:after {
 
 nav:hover {
   transform: translateX(0px);
+}
+
+.navbar__item {
+  list-style: none;
+  flex: none;
+}
+
+.nav__ribbonlink {
+  position: absolute;
+  left: 10px;
+  margin-top: 50%;
+}
+
+.nav__addribbonlink {
+  position: absolute;
+  left: 0;
+  left: 10px;
+  margin-top: 60%;
+}
+
+.logo {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  margin-top: 20%;
 }
