@@ -8,8 +8,13 @@ export const RibbonDetail = () => {
     duration: 0,
   });
   const [timeDisplayFormat, setTimeDisplayformat] = useState("normal");
-  const { playing, seeking } = state;
+  const [bookmarks, setBookmarks] = useState([]);
+  const { playing } = state;
+
+  //refs
   const playerRef = useRef(null);
+  const controlsRef = useRef(null);
+  const canvasRef = useRef(null);
 
   //play pause toggle
   const handlePlayPause = () => {
@@ -44,6 +49,15 @@ export const RibbonDetail = () => {
     }
   };
 
+  const addBookmark = () => {
+    const bookmarksCopy = [...bookmarks];
+    bookmarksCopy.push({
+      time: playerRef.current.getCurrentTime(),
+      display: format(playerRef.current.getCurrentTime()),
+    });
+    setBookmarks(bookmarksCopy);
+  };
+
   return (
     <>
       <div className="container ">
@@ -63,11 +77,37 @@ export const RibbonDetail = () => {
             <Button
               className="btn btn-lg btn-secondary w-50"
               onClick={handlePlayPause}
+              onClick={addBookmark}
             >
               {playing ? `Add Snag ${timeDisplayFormat}` : "Continue"}
             </Button>
           </div>
+          {/* Snags */}
+          <div className="content-aldin-center m-3">
+            <h3>Snags</h3>
+            {bookmarks.map((bookmark, index) => (
+              <>
+                <div key={index} item>
+                  <div
+                    onClick={() => {
+                      playerRef.current.seekTo(bookmark.time);
+                      controlsRef.current.style.visibility = "visible";
+
+                      setTimeout(() => {
+                        controlsRef.current.style.visibility = "hidden";
+                      }, 1000);
+                    }}
+                    elevation={3}
+                  >
+                    <div>bookmark at {bookmark.display}</div>
+                  </div>
+                </div>
+              </>
+            ))}
+            ;
+          </div>
         </div>
+        <canvas ref={canvasRef} />
       </div>
     </>
   );
