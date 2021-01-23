@@ -60,7 +60,10 @@ export const RibbonDetail = () => {
             />
           </div>
           <div className="text-center m-3">
-            <Button className="btn btn-lg w-50" onClick={handlePlayPause}>
+            <Button
+              className="btn btn-lg btn-secondary w-50"
+              onClick={handlePlayPause}
+            >
               {playing ? `Add Snag ${timeDisplayFormat}` : "Continue"}
             </Button>
           </div>
