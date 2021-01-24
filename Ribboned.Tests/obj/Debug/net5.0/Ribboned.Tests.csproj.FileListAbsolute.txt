@@ -236,3 +236,7 @@ C:\Users\CJ\workspace\csharp\Ribboned\Ribboned.Tests\obj\Debug\net5.0\Ribboned.T
 C:\Users\CJ\workspace\csharp\Ribboned\Ribboned.Tests\obj\Debug\net5.0\ref\Ribboned.Tests.dll
 C:\Users\CJ\workspace\csharp\Ribboned\Ribboned.Tests\obj\Debug\net5.0\Ribboned.Tests.pdb
 C:\Users\CJ\workspace\csharp\Ribboned\Ribboned.Tests\obj\Debug\net5.0\Ribboned.Tests.genruntimeconfig.cache
+C:\Users\CJ\workspace\csharp\Ribboned\Ribboned.Tests\bin\Debug\net5.0\appsettings.Local.json
+C:\Users\CJ\workspace\csharp\Ribboned\Ribboned.Tests\bin\Debug\net5.0\clientside\package-lock.json
+C:\Users\CJ\workspace\csharp\Ribboned\Ribboned.Tests\bin\Debug\net5.0\clientside\package.json
+C:\Users\CJ\workspace\csharp\Ribboned\Ribboned.Tests\bin\Debug\net5.0\clientside\public\manifest.json
