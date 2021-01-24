@@ -11,6 +11,7 @@
   background: #ececec;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   padding: 30px;
+  top: 6vh;
   position: relative;
 }
 .login-form h2 {
@@ -29,7 +30,16 @@
   z-index: 9;
   padding: 15px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  border: 4px solid black;
 }
 .login-form .avatar img {
   width: 100%;
+}
+
+.full-logo {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 10vh;
 }

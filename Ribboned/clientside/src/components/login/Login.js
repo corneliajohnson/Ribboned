@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { Button, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
+import Logo from "../../img/RibbonedFinger.png";
+import LogoWords from "../../img/RibbonedWordOnly.png";
 import "./Login.css";
 
 export const Login = () => {
@@ -27,11 +29,14 @@ export const Login = () => {
 
   return (
     <div className="login-form">
-      <form onSubmit={handleSubmit}>
-        <div className="avatar bg-primary">
-          <img src="/quill.png" alt="Avatar" />
+      <div>
+        <img className="full-logo" src={LogoWords} alt="main-logo" />
+      </div>
+      <form onSubmit={handleSubmit} className="bg-primary m-5">
+        <div className="avatar bg-white">
+          <img src={Logo} alt="Avatar" />
         </div>
-        <h2 className="text-center">User Login</h2>
+        <h2 className="text-center text-white">User Login</h2>
         <div className="form-group">
           <Input
             onChange={(e) => setEmail(e.target.value)}
@@ -53,14 +58,16 @@ export const Login = () => {
           />
         </div>
         <div className="form-group">
-          <Button type="submit" block color="danger" disabled={loading}>
+          <Button type="submit" block color="dark" disabled={loading}>
             Sign in
           </Button>
         </div>
         <div className="text-center small">
           Don't have an account?
           <div>
-            <Link to="/register">Sign up here</Link>
+            <Link className="text-white" to="/register">
+              Sign up here
+            </Link>
           </div>
         </div>
       </form>

@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import { Button, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
+import Logo from "../../img/RibbonedFinger.png";
+import LogoWords from "../../img/RibbonedWordOnly.png";
+import "../login/Login.css";
 
 export const Register = () => {
   const { register } = useContext(UserProfileContext);
@@ -39,8 +42,14 @@ export const Register = () => {
 
   return (
     <div className="login-form">
-      <form onSubmit={handleSubmit}>
-        <h2 className="text-center">User Register</h2>
+      <div>
+        <img className="full-logo" src={LogoWords} alt="main-logo" />
+      </div>
+      <form onSubmit={handleSubmit} className="bg-primary m-5">
+        <div className="avatar bg-white">
+          <img src={Logo} alt="Avatar" />
+        </div>
+        <h2 className="text-center text-white">Register</h2>
         <div className="form-group">
           <Input
             onChange={(e) => setUsername(e.target.value)}
@@ -82,14 +91,16 @@ export const Register = () => {
           />
         </div>
         <div className="form-group">
-          <Button type="submit" block color="success" disabled={loading}>
+          <Button type="submit" block color="dark" disabled={loading}>
             Sign Up
           </Button>
         </div>
         <div className="text-center small">
           Already have an account?
           <div>
-            <Link to="/login">Log in here</Link>
+            <Link className="text-white" to="/login">
+              Log in here
+            </Link>
           </div>
         </div>
       </form>
