@@ -36,7 +36,7 @@ export const Login = () => {
         <div className="avatar bg-white">
           <img src={Logo} alt="Avatar" />
         </div>
-        <h2 className="text-center text-white">User Login</h2>
+        <h2 className="text-center text-white">Login</h2>
         <div className="form-group">
           <Input
             onChange={(e) => setEmail(e.target.value)}
