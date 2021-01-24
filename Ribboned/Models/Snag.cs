@@ -9,5 +9,6 @@ namespace Ribboned.Models
         public string Note { get; set; }
         public DateTime DateCreated { get; set; }
         public int Seconds { get; set; }
+        public Ribbon Ribbon { get; set; }
     }
 }

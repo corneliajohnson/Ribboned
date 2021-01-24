@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ribboned.Models;
 using Ribboned.Repositories;
+using System.Security.Claims;
 
 namespace Ribboned.Controllers
 {
@@ -9,9 +10,11 @@ namespace Ribboned.Controllers
     public class RibbonController : Controller
     {
         private readonly IRibbonRepository _ribbonRepo;
-        public RibbonController(IRibbonRepository ribbonRepo)
+        private readonly IUserProfileRepository _userRepo;
+        public RibbonController(IRibbonRepository ribbonRepo, IUserProfileRepository userRepo)
         {
             _ribbonRepo = ribbonRepo;
+            _userRepo = userRepo;
         }
 
         [HttpPost]
@@ -24,6 +27,14 @@ namespace Ribboned.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Ribbon ribbon)
         {
+            var r = _ribbonRepo.GetById(id);
+            // var currentUser = GetCurrentUserProfile();
+            //check that ribbon exist and belongs to user
+            if (r == null)
+            {
+                return NotFound();
+            }
+
             if (id != ribbon.Id)
             {
                 return BadRequest();
@@ -47,14 +58,39 @@ namespace Ribboned.Controllers
         [HttpGet("getbyuser/{id}")]
         public IActionResult GetByUser(int id)
         {
-            return Ok(_ribbonRepo.GetByUserId(id));
+            //check that user exist
+            var user = _ribbonRepo.GetByUserId(id);
+            if (user == null)
+            {
+                BadRequest();
+            }
+
+            return Ok(user);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            var r = _ribbonRepo.GetById(id);
+            //var currentUser = GetCurrentUserProfile();
+            //check that ribbon exist and belongs to user
+            if (r == null)
+            {
+                return NotFound();
+            }
             _ribbonRepo.Delete(id);
             return NoContent();
+        }
+
+        [HttpGet("search")]
+        public IActionResult Search(string q)
+        {
+            return Ok(_ribbonRepo.Search(q, 1));
+        }
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userRepo.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

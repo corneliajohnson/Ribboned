@@ -8,5 +8,6 @@ namespace Ribboned.Repositories
         UserProfile GetByFireBaseId(string firebaseUserId);
         UserProfile GetById(int id);
         void Update(UserProfile up);
+        UserProfile GetByFirebaseUserId(string firebaseUserId);
     }
 }

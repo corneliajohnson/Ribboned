@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ribboned.Models;
 using Ribboned.Repositories;
+using System;
 
 namespace Ribboned.Controllers
 {
@@ -23,6 +24,7 @@ namespace Ribboned.Controllers
         [HttpPost]
         public IActionResult Post(Snag snag)
         {
+            snag.DateCreated = DateTime.Now;
             _snagRepo.Add(snag);
             return CreatedAtAction("Get", new { id = snag.Id }, snag);
         }
@@ -34,7 +36,7 @@ namespace Ribboned.Controllers
             {
                 return BadRequest();
             }
-
+            snag.DateCreated = DateTime.Now;
             _snagRepo.Update(snag);
             return NoContent();
         }
