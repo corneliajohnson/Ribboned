@@ -15,17 +15,6 @@ namespace Ribboned.Controllers
             _userProfileRepo = userProfileRepo;
         }
 
-        //[HttpGet("{id}")]
-        //public IActionResult Get(int id)
-        //{
-        //    var user = _userProfileRepo.GetById(id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(user);
-        //}
-
         [HttpPost]
         public IActionResult Post(UserProfile up)
         {
