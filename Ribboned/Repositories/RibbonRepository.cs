@@ -70,7 +70,13 @@ namespace Ribboned.Repositories
         {
             //search for ribbons by title, description or snag note
 
-            var queryString = q.ToLower();
+            //check for empy string
+            if(string.IsNullOrWhiteSpace(q))
+            {
+                return new List<Ribbon>();
+            }
+
+            var queryString = q.Trim().ToLower();
             var ribbons = GetByUserId(userId); //only user ribbons
             var querySnags = ribbons.SelectMany(ribbon => ribbon.Snags).ToList();
             var foundInSnags = new List<Ribbon>();
@@ -85,9 +91,10 @@ namespace Ribboned.Repositories
 
             var query = _context.Ribbon
                                 .Include(r => r.Snags)
-                                .Where(r => r.Title.ToLower().Contains(queryString) || r.Decription.ToLower().Contains(queryString) && r.UserProfileId == userId).ToList()
-                                .Concat(foundInSnags).ToList() //add the ribbons found in snags
-                                .Distinct().ToList(); //remove all duplcates
+                                .Where(r => (r.Title.ToLower().Contains(queryString) || r.Decription.ToLower().Contains(queryString)) && r.UserProfileId == userId).ToList()
+                                .Concat(foundInSnags)//add the ribbons found in snags
+                                .Distinct() //remove all duplcates
+                                .OrderByDescending(p => p.DateCreated).ToList();
 
             return query;
 

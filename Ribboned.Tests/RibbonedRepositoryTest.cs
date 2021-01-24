@@ -14,7 +14,7 @@ namespace Ribboned.Tests
             AddSampleData();
         }
 
-        //Ribbon Tests
+        //Ribbon Tests - CRUD
         [Fact] 
         public void RibbonRepository_Can_Add_New_Ribbon()
         {
@@ -60,6 +60,70 @@ namespace Ribboned.Tests
             var result = repo.GetById(ribbonwithSnag);
 
             Assert.Null(result);
+        }
+
+        //Ribbon Test - Search
+        [Fact]
+        public void Search_Should_Match_Only_User_Ribbon_Title()
+        {
+            var repo = new RibbonRepository(_context);
+            var results = repo.Search("Test", 1);
+
+            Assert.Equal(2, results.Count);
+            Assert.Equal("Test Video 4", results[0].Title);
+            Assert.Equal("Test Video 1", results[1].Title);
+        }
+
+        [Fact]
+        public void Search_Should_Match_Only_User_Ribbon_Decription()
+        {
+            var repo = new RibbonRepository(_context);
+            var results = repo.Search("decription of", 2);
+
+            Assert.Equal(2, results.Count);
+            Assert.Equal("Test Video 3", results[0].Title);
+            Assert.Equal("Test Video 2", results[1].Title);
+        }
+
+        [Fact]
+        public void Search_Should_Match_Only_User_Ribbon_Snag()
+        {
+            var repo = new RibbonRepository(_context);
+            var results = repo.Search("note 3", 1);
+
+            Assert.Single(results);
+            Assert.Equal("Test Video 1", results[0].Title);
+        }
+
+        [Fact]
+        public void Search_Should_Return_Empty_List_If_No_Matches()
+        {
+            var repo = new RibbonRepository(_context);
+            var results = repo.Search("foobarbazcatgrill", 1);
+
+            Assert.NotNull(results);
+            Assert.Empty(results);
+        }
+
+        [Fact]
+        public void Search_Should_Return_Empty_List_If_Empty_String()
+        {
+            var repo = new RibbonRepository(_context);
+            var results = repo.Search("", 1);
+
+            Assert.NotNull(results);
+            Assert.Empty(results);
+        }
+
+
+        [Fact]
+        public void Search_Should_Return_Empty_List_If_All_Whitespace()
+        {
+            var repo = new RibbonRepository(_context);
+            var results = repo.Search("     ", 1);
+
+            Assert.NotNull(results);
+            Assert.Empty(results);
         }
 
         //Snag Tests
@@ -217,9 +281,22 @@ namespace Ribboned.Tests
                 DateCreated = DateTime.Now - TimeSpan.FromDays(365),
                 DurationSeconds = 500
             };
+
+            var ribbon4 = new Ribbon()
+            {
+                Title = "Test Video 4",
+                Decription = "decription of test video 4",
+                CategoryId = 2,
+                SourceId = 2,
+                UserProfileId = 1,
+                URL = "www.url.com",
+                DateCreated = DateTime.Now - TimeSpan.FromDays(365),
+                DurationSeconds = 500
+            };
             _context.Add(ribbon1);
             _context.Add(ribbon2);
             _context.Add(ribbon3);
+            _context.Add(ribbon4);
             _context.SaveChanges();
 
             var snag1 = new Snag()
