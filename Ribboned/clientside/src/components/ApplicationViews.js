@@ -9,19 +9,17 @@ import { Register } from "./register/Register";
 export const ApplicationViews = () => {
   return (
     <>
-      <UserProfileProvider>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-      </UserProfileProvider>
-      <UserProfileProvider>
-        <Route exact path="/register">
-          <Register />
-        </Route>
-      </UserProfileProvider>
+      <Route exact path="/login">
+        <Login />
+      </Route>
+      <Route exact path="/register">
+        <Register />
+      </Route>
+
       <Route exact path="/">
         <Home />
       </Route>
+
       <Route exact path="/ribbon">
         <RibbonDetail />
       </Route>

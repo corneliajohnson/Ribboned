@@ -5,7 +5,7 @@ import "firebase/auth";
 
 export const UserProfileContext = createContext();
 
-export function UserProfileProvider(props) {
+export const UserProfileProvider = (props) => {
   const apiUrl = "/api/userprofile";
 
   const userProfile = localStorage.getItem("userProfile");
@@ -106,4 +106,4 @@ export function UserProfileProvider(props) {
       )}
     </UserProfileContext.Provider>
   );
-}
+};
