@@ -10,5 +10,6 @@ namespace Ribboned.Repositories
         Ribbon GetById(int id);
         List<Ribbon> GetByUserId(int id);
         void Update(Ribbon ribbon);
+        List<Ribbon> Search(string q, int userId);
     }
 }

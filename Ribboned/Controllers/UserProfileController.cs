@@ -17,12 +17,12 @@ namespace Ribboned.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var post = _userProfileRepo.GetById(id);
-            if (post == null)
+            var user = _userProfileRepo.GetById(id);
+            if (user == null)
             {
                 return NotFound();
             }
-            return Ok(post);
+            return Ok(user);
         }
 
         [HttpPost]
