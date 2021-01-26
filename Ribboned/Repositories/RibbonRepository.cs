@@ -22,9 +22,16 @@ namespace Ribboned.Repositories
 
         public List<Ribbon> GetByUserId(int id)
         {
-            return _context.Ribbon
-                .Include(r => r.Snags)
-                .Where(r => r.UserProfileId == id).ToList();
+            return _context.Ribbon.Where(r => r.UserProfileId == id).ToList();
+        }
+
+        public List<Ribbon> GetByMostRecentRibbons(int id)
+        {
+            var ribbons = GetByUserId(id); //only user ribbons
+             return (List<Ribbon>)ribbons.SelectMany(ribbon => ribbon.Snags)
+                .OrderByDescending(s => s.DateCreated)
+                .GroupBy(s => s.RibbonId).Select(s => s.FirstOrDefault())
+                .Take(5);
         }
 
         public Ribbon GetById(int id)
