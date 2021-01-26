@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./NavBar.css";
 import Logo from "../../img/RibbonedWordOnly.png";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
-import { List, NavbarToggler, NavLink } from "reactstrap";
+import { List, NavLink } from "reactstrap";
 
 export const NavBar = (props) => {
   const { getCurrentUser, logout } = useContext(UserProfileContext);
