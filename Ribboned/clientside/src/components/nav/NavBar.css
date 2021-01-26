@@ -26,6 +26,7 @@ nav:after {
   right: -40px;
   top: 40px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .openNav {

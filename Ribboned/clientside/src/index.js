@@ -6,6 +6,7 @@ import "./index.css";
 import firebase from "../node_modules/firebase";
 import { UserProfileProvider } from "./providers/UserProfileProvider";
 import { CategoryProvider } from "./providers/CategoryProvider";
+import { SourceProvider } from "./providers/SourceProvider";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -15,11 +16,13 @@ firebase.initializeApp(firebaseConfig);
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <CategoryProvider>
-        <UserProfileProvider>
-          <Ribboned />
-        </UserProfileProvider>
-      </CategoryProvider>
+      <SourceProvider>
+        <CategoryProvider>
+          <UserProfileProvider>
+            <Ribboned />
+          </UserProfileProvider>
+        </CategoryProvider>
+      </SourceProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

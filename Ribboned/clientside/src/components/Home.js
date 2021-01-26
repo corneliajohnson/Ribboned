@@ -1,19 +1,19 @@
 import React, { useContext, useEffect } from "react";
 import { YouTubeSearch } from "./YouTube/YouTubeSearch";
 import Logo from "../img/RibbonedWordOnly.png";
-import { CategoryContext } from "../providers/CategoryProvider";
+import { SourceContext } from "../providers/SourceProvider";
 
 export const Home = () => {
-  const { getCategories, categories } = useContext(CategoryContext);
+  const { getSources, sources } = useContext(SourceContext);
 
   useEffect(() => {
-    getCategories();
+    getSources();
   }, []);
 
   return (
     <>
       <div className="container">
-        {console.log(categories)}
+        {console.log(sources)}
         <div className="align-items-center">
           <img alt="ribboned" src={Logo} />
           <YouTubeSearch />
