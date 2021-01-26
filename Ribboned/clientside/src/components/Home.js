@@ -1,19 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { YouTubeSearch } from "./YouTube/YouTubeSearch";
 import Logo from "../img/RibbonedWordOnly.png";
-import { SourceContext } from "../providers/SourceProvider";
+import { RibbonContext } from "../providers/RibbonProvider";
 
 export const Home = () => {
-  const { getSources, sources } = useContext(SourceContext);
+  const { ribbons, getUserRibbons, getRibbonById } = useContext(RibbonContext);
+  const [ribbon, setRibbon] = useState({});
 
-  useEffect(() => {
-    getSources();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
       <div className="container">
-        {console.log(sources)}
         <div className="align-items-center">
           <img alt="ribboned" src={Logo} />
           <YouTubeSearch />
