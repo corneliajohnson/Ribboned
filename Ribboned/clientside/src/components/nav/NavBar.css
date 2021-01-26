@@ -28,7 +28,7 @@ nav:after {
   border-radius: 50%;
 }
 
-nav:hover {
+.openNav {
   transform: translateX(0px);
 }
 

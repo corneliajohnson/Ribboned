@@ -1,14 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./NavBar.css";
 import Logo from "../../img/RibbonedWordOnly.png";
-import { List, NavLink } from "reactstrap";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
+import { List, NavbarToggler, NavLink } from "reactstrap";
 
 export const NavBar = (props) => {
   const { getCurrentUser, logout } = useContext(UserProfileContext);
   const user = getCurrentUser();
   const history = useHistory();
+  const [isActive, setActive] = useState(false);
+
+  const toggleClass = () => {
+    setActive(!isActive);
+  };
 
   const logoutAndReturn = () => {
     return logout().then(() => {
@@ -19,7 +24,7 @@ export const NavBar = (props) => {
   return (
     <>
       {user ? (
-        <nav>
+        <nav className={isActive ? "openNav" : null} onClick={toggleClass}>
           <List className="navbar">
             <li className="navbar__item active fixed-top">
               <Link className="navbar__link" to="/account m-5">
