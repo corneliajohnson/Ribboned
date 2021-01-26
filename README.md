@@ -37,6 +37,7 @@ Youtube
 
 
 ## ERD 
-[Ribboned (1).pdf](https://github.com/corneliajohnson/Ribboned/files/5876627/Ribboned.1.pdf)
+![Ribboned (2)](https://user-images.githubusercontent.com/38992646/105917072-e8163200-5fff-11eb-97db-130c3543d686.png)
+
 
 
