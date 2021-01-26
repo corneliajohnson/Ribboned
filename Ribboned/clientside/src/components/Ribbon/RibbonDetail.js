@@ -83,8 +83,8 @@ export const RibbonDetail = () => {
               playing={playing}
               onProgress={handleProgress}
               controls={true}
-              //url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-              url="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+              url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+              //url="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
             />
           </div>
           <div className="text-center m-3">
@@ -95,7 +95,7 @@ export const RibbonDetail = () => {
                 addSnag();
               }}
             >
-              {playing ? `Add Snag ${timeDisplayFormat}` : "Continue"}
+              Add Snag {timeDisplayFormat}
             </Button>
           </div>
           {/* Snags */}
