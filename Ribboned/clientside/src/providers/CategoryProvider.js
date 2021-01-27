@@ -25,8 +25,53 @@ export const CategoryProvider = (props) => {
     );
   };
 
+  const updateCategory = (category) => {
+    getToken().then((token) => {
+      return fetch(`${apiUrl}/${category.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(category),
+      });
+    });
+  };
+
+  const addCategory = (category) => {
+    getToken().then((token) => {
+      return fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(category),
+      });
+    });
+  };
+
+  const deleteCatgory = (id) => {
+    getToken().then((token) => {
+      return fetch(`/api/category/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    });
+  };
+
   return (
-    <CategoryContext.Provider value={{ categories, getCategories }}>
+    <CategoryContext.Provider
+      value={{
+        categories,
+        getCategories,
+        updateCategory,
+        addCategory,
+        deleteCatgory,
+      }}
+    >
       {props.children}
     </CategoryContext.Provider>
   );
