@@ -10,11 +10,10 @@ namespace Ribboned.Models
         public string Decription { get; set; }
         public int CategoryId { get; set; }
         public int SourceId { get; set; }
-        public int UserProfileId { get; set; }
         public string URL { get; set; }
         public DateTime DateCreated { get; set; }
         public int DurationSeconds { get; set; }
-        public UserProfile UserProfile { get; set; }
         public List<Snag> Snags { get; set; }
+        public Category Category { get; set; }
     }
 }

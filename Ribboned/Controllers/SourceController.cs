@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Ribboned.Repositories;
 
 namespace Ribboned.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SourceController : ControllerBase
     {
         private readonly ISourceRepository _sourceRepo;

@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Ribboned.Repositories;
 
 namespace Ribboned.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    [Authorize]
+    public class CategoryController :ControllerBase
     {
         private readonly ICategoryRepository _categoryRepo;
         public CategoryController(ICategoryRepository categoryRepo)

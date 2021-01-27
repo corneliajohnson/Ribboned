@@ -29,10 +29,8 @@ namespace Ribboned.Tests
                 Decription = "decription of test video 4",
                 CategoryId = 2,
                 SourceId = 2,
-                UserProfileId = 1,
                 URL = "www.url.com",
                 DateCreated = DateTime.Now - TimeSpan.FromDays(365),
-                DurationSeconds = 500
             };
 
             //add new ribbon
@@ -71,7 +69,7 @@ namespace Ribboned.Tests
 
             Assert.Equal(2, results.Count);
             Assert.Equal("Test Video 4", results[0].Title);
-            Assert.Equal("Test Video 1", results[1].Title);
+            Assert.Equal("Test Video 3", results[1].Title);
         }
 
         [Fact]
@@ -81,18 +79,18 @@ namespace Ribboned.Tests
             var results = repo.Search("decription of", 2);
 
             Assert.Equal(2, results.Count);
-            Assert.Equal("Test Video 3", results[0].Title);
-            Assert.Equal("Test Video 2", results[1].Title);
+            Assert.Equal("Test Video 2", results[0].Title);
+            Assert.Equal("Test Video 1", results[1].Title);
         }
 
         [Fact]
         public void Search_Should_Match_Only_User_Ribbon_Snag()
         {
             var repo = new RibbonRepository(_context);
-            var results = repo.Search("note 3", 1);
+            var results = repo.Search("note 2", 1);
 
             Assert.Single(results);
-            Assert.Equal("Test Video 1", results[0].Title);
+            Assert.Equal("Test Video 3", results[0].Title);
         }
 
         [Fact]
@@ -223,12 +221,12 @@ namespace Ribboned.Tests
 
             var source1 = new Source()
             {
-                Type = "youtube"
+                Type = "youtube",
             };
 
             var source2 = new Source()
             {
-                Type = "local"
+                Type = "local",
             };
             _context.Add(source1);
             _context.Add(source2);
@@ -236,15 +234,23 @@ namespace Ribboned.Tests
 
             var category1 = new Category()
             {
-                Name = "Sports"
+                Name = "Sports",
+                UserProfileId = 1
             };
 
             var category2 = new Category()
             {
-                Name = "Tech"
+                Name = "Tech",
+                 UserProfileId = 1
+            };
+            var category3 = new Category()
+            {
+                Name = "Games",
+                UserProfileId = 2
             };
             _context.Add(category1);
             _context.Add(category2);
+            _context.Add(category3);
             _context.SaveChanges();
 
             var ribbon1 = new Ribbon()
@@ -253,10 +259,8 @@ namespace Ribboned.Tests
                 Decription = "decription of test video 1",
                 CategoryId = 1,
                 SourceId = 1,
-                UserProfileId = 1,
                 URL = "www.url.com",
                 DateCreated = DateTime.Now - TimeSpan.FromDays(365),
-                DurationSeconds = 900
             };
             var ribbon2 = new Ribbon()
             {
@@ -264,10 +268,8 @@ namespace Ribboned.Tests
                 Decription = "decription of test video 2",
                 CategoryId = 1,
                 SourceId = 1,
-                UserProfileId = 2,
                 URL = "www.url.com",
                 DateCreated = DateTime.Now - TimeSpan.FromDays(365),
-                DurationSeconds = 1000
             };
 
             var ribbon3 = new Ribbon()
@@ -276,22 +278,18 @@ namespace Ribboned.Tests
                 Decription = "decription of test video 3",
                 CategoryId = 2,
                 SourceId = 2,
-                UserProfileId = 2,
                 URL = "www.url.com",
                 DateCreated = DateTime.Now - TimeSpan.FromDays(365),
-                DurationSeconds = 500
             };
 
             var ribbon4 = new Ribbon()
             {
                 Title = "Test Video 4",
                 Decription = "decription of test video 4",
-                CategoryId = 2,
+                CategoryId = 3,
                 SourceId = 2,
-                UserProfileId = 1,
                 URL = "www.url.com",
                 DateCreated = DateTime.Now - TimeSpan.FromDays(365),
-                DurationSeconds = 500
             };
             _context.Add(ribbon1);
             _context.Add(ribbon2);
