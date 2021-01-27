@@ -68,6 +68,19 @@ namespace Ribboned.Controllers
             return Ok(user);
         }
 
+        [HttpGet("mostrecentribbons/{id}")]
+        public IActionResult GetMostRecentRibbons(int userId)
+        {
+            //check that user exist
+            var user = _ribbonRepo.GetByMostRecentRibbons(userId);
+            if (user == null)
+            {
+                BadRequest();
+            }
+
+            return Ok(user);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

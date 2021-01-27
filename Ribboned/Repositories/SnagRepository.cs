@@ -15,6 +15,16 @@ namespace Ribboned.Repositories
             _context = context;
         }
 
+        public List<Snag> GetAll()
+        {
+            return _context.Snag.ToList();
+        }
+
+        public List<Snag> GetMostRecentSnags(int userId)
+        {
+            return _context.Snag.Where(s => s.Ribbon.Category.UserProfileId == userId).ToList();
+        }
+
         public List<Snag> GetByRibbon(int ribbonId)
         {
             return _context.Snag.Where(s => s.RibbonId == ribbonId).ToList();

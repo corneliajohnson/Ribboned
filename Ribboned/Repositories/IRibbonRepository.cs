@@ -11,5 +11,6 @@ namespace Ribboned.Repositories
         List<Ribbon> GetByUserId(int id);
         void Update(Ribbon ribbon);
         List<Ribbon> Search(string q, int userId);
+        List<Ribbon> GetByMostRecentRibbons(int id);
     }
 }

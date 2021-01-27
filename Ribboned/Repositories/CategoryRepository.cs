@@ -1,4 +1,5 @@
-﻿using Ribboned.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Ribboned.Data;
 using Ribboned.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Ribboned.Repositories
 
         public List<Category> GetAll()
         {
-            return _context.Category.ToList();
+            return _context.Category.Include(c => c.UserProfile).ToList();
         }
     }
 }
