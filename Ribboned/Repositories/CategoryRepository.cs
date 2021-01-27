@@ -24,5 +24,40 @@ namespace Ribboned.Repositories
             return _context.Category.Include(c => c.UserProfile)
                 .Where(c => c.UserProfileId == userId).ToList();
         }
+        
+        public Category GetById(int id)
+        {
+            return _context.Category.Include(c => c.UserProfile)
+                .FirstOrDefault(c => c.Id == id);
+        }
+
+        public void Add(Category category)
+        {
+            _context.Add(category);
+            _context.SaveChanges();
+        }
+
+        public void Update(Category category)
+        {
+            var local = _context.Set<Category>()
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(category.Id));
+            //check if local is not null
+            if (local != null)
+            {
+                //  detach
+                _context.Entry(local).State = EntityState.Detached;
+            }
+            _context.Entry(category).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var category = GetById(id);
+            _context.Category.Remove(category);
+            _context.SaveChanges();
+        }
+
     }
 }

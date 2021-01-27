@@ -67,9 +67,10 @@ namespace Ribboned.Tests
             var repo = new RibbonRepository(_context);
             var results = repo.Search("Test", 1);
 
-            Assert.Equal(2, results.Count);
-            Assert.Equal("Test Video 4", results[0].Title);
-            Assert.Equal("Test Video 3", results[1].Title);
+            Assert.Equal(3, results.Count);
+            Assert.Equal("Test Video 3", results[0].Title);
+            Assert.Equal("Test Video 2", results[1].Title);
+            Assert.Equal("Test Video 1", results[2].Title);
         }
 
         [Fact]
@@ -78,9 +79,8 @@ namespace Ribboned.Tests
             var repo = new RibbonRepository(_context);
             var results = repo.Search("decription of", 2);
 
-            Assert.Equal(2, results.Count);
-            Assert.Equal("Test Video 2", results[0].Title);
-            Assert.Equal("Test Video 1", results[1].Title);
+            Assert.Single(results);
+            Assert.Equal("Test Video 4", results[0].Title);
         }
 
         [Fact]

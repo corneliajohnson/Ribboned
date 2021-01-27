@@ -1,30 +1,39 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CategoryContext } from "../../providers/CategoryProvider";
-import {
-  Form,
-  FormGroup,
-  Input,
-  Button,
-  FormText,
-  CardTitle,
-  Card,
-} from "reactstrap";
+import { Form, FormGroup, Input, Button, FormText, Card } from "reactstrap";
 
 export const CategoryForm = () => {
+  const userId = JSON.parse(localStorage.getItem("userProfile")).id;
+  const [category, setCategory] = useState({ name: "", userProfileIs: userId });
+  const [loading, setLoading] = useState(false);
+
+  const handleInputControl = (event) => {
+    const newCategory = { ...category };
+    newCategory[event.target.name] = event.target.value;
+    setCategory(newCategory);
+  };
+
   const handleSubmit = (e) => {
-    e.prevent.Default();
+    e.preventDefault();
+    console.log(category);
   };
 
   return (
-    <div className="d-flex justify-content-center" onSubmit={handleSubmit}>
+    <div className="d-flex justify-content-center">
       <Card className="w-50 card text-white bg-primary mb-3">
-        <CardTitle>Add A New Category</CardTitle>
-        <Form>
+        <h2 className="text-white m-3 text-center">Add A New Category</h2>
+        <Form onSubmit={handleSubmit}>
           <FormGroup className="m-3">
-            <Input />
+            <Input
+              type="text"
+              name="name"
+              defaultValue={category.name}
+              onChange={handleInputControl}
+              required
+            />
             <FormText>You Cannot Add An Exact Duplicate</FormText>
           </FormGroup>
-          <Button className="btn-block" color="dark">
+          <Button className="btn-block" color="dark" disabled={loading}>
             submit
           </Button>
         </Form>
