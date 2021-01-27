@@ -3,11 +3,15 @@ import { CategoryContext } from "../../providers/CategoryProvider";
 import { Form, FormGroup, Input, Button, FormText, Card } from "reactstrap";
 
 export const CategoryForm = () => {
-  const { addCategory, updateCategoy, getCategories } = useContext(
-    CategoryContext
-  );
+  const {
+    addCategory,
+    category,
+    setCategory,
+    updateCategory,
+    getCategories,
+  } = useContext(CategoryContext);
   const userId = JSON.parse(localStorage.getItem("userProfile")).id;
-  const [category, setCategory] = useState({ name: "", userProfileId: userId });
+  // const [category, setCategory] = useState({ name: "", userProfileId: userId });
   const [loading, setLoading] = useState(false);
 
   const handleInputControl = (event) => {
@@ -23,8 +27,13 @@ export const CategoryForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCategory(category);
-    setCategory({ ...category, name: "" });
+    if (category.id) {
+      updateCategory(category);
+      //updateCategory(category);
+    } else {
+      addCategory(category);
+    }
+    setCategory({ ...category, id: 0, name: "" });
   };
 
   return (

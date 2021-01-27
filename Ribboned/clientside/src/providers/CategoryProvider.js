@@ -7,6 +7,7 @@ export const CategoryContext = createContext();
 export const CategoryProvider = (props) => {
   const getToken = () => firebase.auth().currentUser.getIdToken();
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState({});
   const userId = JSON.parse(localStorage.getItem("userProfile")).id;
   const apiUrl = "/api/category";
 
@@ -51,7 +52,7 @@ export const CategoryProvider = (props) => {
     });
   };
 
-  const deleteCatgory = (id) => {
+  const deleteCategory = (id) => {
     getToken().then((token) => {
       return fetch(`/api/category/${id}`, {
         method: "DELETE",
@@ -69,7 +70,9 @@ export const CategoryProvider = (props) => {
         getCategories,
         updateCategory,
         addCategory,
-        deleteCatgory,
+        deleteCategory,
+        setCategory,
+        category,
       }}
     >
       {props.children}
