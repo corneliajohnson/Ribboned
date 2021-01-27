@@ -17,12 +17,12 @@ namespace Ribboned.Repositories
 
         public List<Ribbon> GetAll()
         {
-            return _context.Ribbon.Include(p => p.UserProfile).ToList();
+            return _context.Ribbon.Include(r => r.Snags).Include(r => r.Category.UserProfile).ToList();
         }
 
         public List<Ribbon> GetByUserId(int id)
         {
-            return _context.Ribbon.Where(r => r.UserProfileId == id).ToList();
+            return _context.Ribbon.Include(r => r.Snags).Where(r => r.Category.UserProfileId == id).ToList();
         }
 
         public List<Ribbon> GetByMostRecentRibbons(int id)
@@ -37,7 +37,7 @@ namespace Ribboned.Repositories
         public Ribbon GetById(int id)
         {
             return _context.Ribbon
-                .Include(r => r.UserProfile)
+                .Include(r => r.Category.UserProfile)
                 .Include(r => r.Snags)
                 .FirstOrDefault(r => r.Id == id);
         }
@@ -85,20 +85,23 @@ namespace Ribboned.Repositories
 
             var queryString = q.Trim().ToLower();
             var ribbons = GetByUserId(userId); //only user ribbons
-            var querySnags = ribbons.SelectMany(ribbon => ribbon.Snags).ToList();
+            var querySnagsArray = ribbons.Select(ribbon => ribbon.Snags).ToList();
             var foundInSnags = new List<Ribbon>();
 
-            foreach (Snag snag in querySnags)
+            foreach (List<Snag> snags in querySnagsArray)
             {
-                if (snag.Note.ToLower().Contains(queryString))
+                foreach(Snag snag in snags)
                 {
-                    foundInSnags.Add(snag.Ribbon);
+                    if (snag.Note.ToLower().Contains(queryString))
+                    {
+                        foundInSnags.Add(snag.Ribbon);
+                    }
                 }
             }
 
             var query = _context.Ribbon
                                 .Include(r => r.Snags)
-                                .Where(r => (r.Title.ToLower().Contains(queryString) || r.Decription.ToLower().Contains(queryString)) && r.UserProfileId == userId).ToList()
+                                .Where(r => (r.Title.ToLower().Contains(queryString) || r.Decription.ToLower().Contains(queryString)) && r.Category.UserProfileId == userId).ToList()
                                 .Concat(foundInSnags)//add the ribbons found in snags
                                 .Distinct() //remove all duplcates
                                 .OrderByDescending(p => p.DateCreated).ToList();

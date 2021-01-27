@@ -14,6 +14,6 @@ namespace Ribboned.Models
         public DateTime DateCreated { get; set; }
         public int DurationSeconds { get; set; }
         public List<Snag> Snags { get; set; }
-        List<Category> Categories { get; set; }
+        public Category Category { get; set; }
     }
 }
