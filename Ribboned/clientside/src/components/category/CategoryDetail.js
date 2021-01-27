@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
 import { Button } from "reactstrap";
 import { CategoryContext } from "../../providers/CategoryProvider";
+import { CategoryDelete } from "./CaregoryDelete";
 
 export const CategoryDetail = ({ category }) => {
   const { setCategory } = useContext(CategoryContext);
   return (
     <li href="#" className="list-group-item list-group-item-action">
-      {category.name}{" "}
-      <span className="float-righ">
+      <div className="col-8">{category.name} </div>
+      <span className="float-right">
         <Button
+          className="btn btn-info mx-3"
           onClick={() =>
             setCategory({
               id: category.id,
@@ -19,6 +21,7 @@ export const CategoryDetail = ({ category }) => {
         >
           Edit
         </Button>
+        <CategoryDelete category={category} />
       </span>
     </li>
   );
