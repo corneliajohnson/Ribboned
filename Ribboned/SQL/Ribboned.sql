@@ -11,8 +11,8 @@ GO
 DROP TABLE IF EXISTS [Category];
 DROP TABLE IF EXISTS [Ribbon];
 DROP TABLE IF EXISTS [Snag];
-DROP TABLE IF EXISTS [UserProfile];
 DROP TABLE IF EXISTS [Source];
+DROP TABLE IF EXISTS [UserProfile];
 
 CREATE TABLE [UserProfile] (
   [Id] integer PRIMARY KEY IDENTITY,
@@ -44,12 +44,12 @@ CREATE TABLE [Ribbon] (
   [Title] nvarchar(100) NOT NULL,
   [Decription] nvarchar(255),
   [SourceId] integer NOT NULL,
-  [UserProfileId] integer NOT NULL,
   [URL] nvarchar(255) NOT NULL,
   [DateCreated] datetime NOT NULL,
+  [CategoryId] integer NOT NULL,
 
+ CONSTRAINT [FK_Ribbon_Category] FOREIGN KEY ([CategoryId]) REFERENCES [Category] ([Id]),
  CONSTRAINT [FK_Ribbon_Source] FOREIGN KEY ([SourceId]) REFERENCES [Source] ([Id]),
- CONSTRAINT [FK_Ribbon_UserProfile] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
 )
 
 CREATE TABLE [Snag] (
