@@ -9,9 +9,9 @@ export const RibbonProvider = (props) => {
   const [ribbons, setRibbons] = useState([]);
 
   const apiUrl = "/api/ribbon";
-  const userId = JSON.parse(localStorage.getItem("userProfile")).id;
 
   const getUserRibbons = () => {
+    const userId = JSON.parse(localStorage.getItem("userProfile")).id;
     getToken().then((token) =>
       fetch(`${apiUrl}/getbyuser/${userId}`, {
         method: "GET",

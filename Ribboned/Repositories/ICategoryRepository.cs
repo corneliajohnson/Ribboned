@@ -7,7 +7,7 @@ namespace Ribboned.Repositories
     {
         List<Category> GetAll();
         List<Category> GetByUserId(int userId);
-        void Delete(int id);
+        void Delete(int id, int userId);
         void Update(Category category);
         void Add(Category category);
         Category GetById(int id);

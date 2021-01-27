@@ -10,9 +10,11 @@ namespace Ribboned.Controllers
     public class UserProfileController : ControllerBase
     {
         private readonly IUserProfileRepository _userProfileRepo;
-        public UserProfileController(IUserProfileRepository userProfileRepo)
+        private readonly ICategoryRepository _categoryRepo;
+        public UserProfileController(IUserProfileRepository userProfileRepo, ICategoryRepository categoryRepo)
         {
             _userProfileRepo = userProfileRepo;
+            _categoryRepo = categoryRepo;
         }
 
         [HttpPost]

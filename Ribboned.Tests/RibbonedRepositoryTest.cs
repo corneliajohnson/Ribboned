@@ -186,7 +186,7 @@ namespace Ribboned.Tests
             //add new user
             repo.Add(newUser);
 
-            //Get all snags again
+            //Get all user again
             var resultingUsers = repo.GetAll();
             var resultingCount = resultingUsers.Count;
 
@@ -195,6 +195,47 @@ namespace Ribboned.Tests
             Assert.Equal(startingCount + 1, resultingCount);
         }
 
+
+        //Category Tests
+        [Fact]
+        public void User_Can_Add_New_Category()
+        {
+            var repo = new CategoryRepository(_context);
+            var startingCategories = repo.GetAll();
+            var startingCount = startingCategories.Count;
+
+            var newCategory = new Category()
+            {
+                Name = "Movies",
+                UserProfileId = 1
+            };
+
+            //add new category
+            repo.Add(newCategory);
+
+            //Get all categories again
+            var resultingCategories = repo.GetAll();
+            var resultingCount = resultingCategories.Count;
+
+            //Check that one has been added
+            Assert.NotEqual(0, newCategory.Id);
+            Assert.Equal(startingCount + 1, resultingCount);
+        }
+
+        [Fact]
+        public void User_Can_Delete_Category()
+        {
+            var category = 1;
+            var repo = new CategoryRepository(_context);
+
+            // Attempt to delete it
+            repo.Delete(category, 1);
+
+            // Now attempt to get it
+            var result = repo.GetById(category);
+
+            Assert.Null(result);
+        }
 
 
         //Add sample data
@@ -234,7 +275,7 @@ namespace Ribboned.Tests
 
             var category1 = new Category()
             {
-                Name = "Sports",
+                Name = "Other",
                 UserProfileId = 1
             };
 

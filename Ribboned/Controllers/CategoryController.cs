@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Ribboned.Models;
 using Ribboned.Repositories;
+using System.Security.Claims;
 
 namespace Ribboned.Controllers
 {
@@ -11,9 +12,11 @@ namespace Ribboned.Controllers
     public class CategoryController :ControllerBase
     {
         private readonly ICategoryRepository _categoryRepo;
-        public CategoryController(ICategoryRepository categoryRepo)
+        private readonly IUserProfileRepository _userRepo;
+        public CategoryController(ICategoryRepository categoryRepo, IUserProfileRepository userRepo)
         {
             _categoryRepo = categoryRepo;
+            _userRepo = userRepo;
         }
 
         [HttpGet]
@@ -31,25 +34,32 @@ namespace Ribboned.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var post = _categoryRepo.GetById(id);
-            if (post == null)
+            var currentUser = GetCurrentUserProfile();
+            var category = _categoryRepo.GetById(id);
+            if (category == null || category.UserProfileId != currentUser.Id)
             {
                 return NotFound();
             }
-            return Ok(post);
+            return Ok(category);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var c = _categoryRepo.GetById(id);
-            //var currentUser = GetCurrentUserProfile();
-            //check that ribbon exist and belongs to user
-            if (c == null)
+            var category = _categoryRepo.GetById(id);
+            var currentUser = GetCurrentUserProfile();
+            //check that category exist and belongs to user
+            if (category == null || category.UserProfileId != currentUser.Id)
             {
                 return NotFound();
             }
-            _categoryRepo.Delete(id);
+
+            if(category.Name == "Other")
+            {
+                return BadRequest();
+            }
+
+            _categoryRepo.Delete(id, currentUser.Id);
             return NoContent();
         }
         [HttpPost]
@@ -63,9 +73,9 @@ namespace Ribboned.Controllers
         public IActionResult Put(int id, Category category)
         {
             var c = _categoryRepo.GetById(id);
-            // var currentUser = GetCurrentUserProfile();
+             var currentUser = GetCurrentUserProfile();
             //check that ribbon exist and belongs to user
-            if (c == null)
+            if (c == null || c.UserProfileId != currentUser.Id)
             {
                 return NotFound();
             }
@@ -77,6 +87,12 @@ namespace Ribboned.Controllers
 
             _categoryRepo.Update(category);
             return NoContent();
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userRepo.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }
