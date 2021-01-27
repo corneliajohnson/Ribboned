@@ -37,8 +37,8 @@ export const CategoryForm = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center">
-      <Card className="w-50 card text-white bg-primary mb-3">
+    <div className="col">
+      <Card className="card text-white bg-primary mb-3">
         <h2 className="text-white m-3 text-center">Add A New Category</h2>
         <Form onSubmit={handleSubmit}>
           <FormGroup className="m-3">

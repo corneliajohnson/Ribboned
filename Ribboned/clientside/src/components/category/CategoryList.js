@@ -15,7 +15,7 @@ export const CategoryList = () => {
   }
 
   return (
-    <div class="list-group">
+    <div class="list-group col w-50">
       <li href="#" class="list-group-item list-group-item-action active">
         All Categories
       </li>
