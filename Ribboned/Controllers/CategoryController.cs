@@ -20,5 +20,11 @@ namespace Ribboned.Controllers
         {
             return Ok(_categoryRepo.GetAll());
         }
+
+        [HttpGet("getbyuserid/{id}")]
+        public IActionResult GetByUserId(int id)
+        {
+            return Ok(_categoryRepo.GetByUserId(id));
+        }
     }
 }

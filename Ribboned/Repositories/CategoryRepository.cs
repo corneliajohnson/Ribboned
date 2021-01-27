@@ -19,5 +19,10 @@ namespace Ribboned.Repositories
         {
             return _context.Category.Include(c => c.UserProfile).ToList();
         }
+        public List<Category> GetByUserId(int userId)
+        {
+            return _context.Category.Include(c => c.UserProfile)
+                .Where(c => c.UserProfileId == userId).ToList();
+        }
     }
 }

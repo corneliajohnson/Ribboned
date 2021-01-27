@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { Home } from "./Home";
-import { RibbonDetail } from "./Ribbon/RibbonDetail";
+import { RibbonDetail } from "./ribbon/RibbonDetail";
 import { Login } from "./login/Login";
 import { Register } from "./register/Register";
 import { UserProfileContext } from "../providers/UserProfileProvider";
+import { CategoryManager } from "./category/CategoryManager";
 
 export const ApplicationViews = () => {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -19,6 +20,10 @@ export const ApplicationViews = () => {
 
       <Route exact path="/">
         {isLoggedIn ? <Home /> : <Redirect to="/login" />}
+      </Route>
+
+      <Route exact path="/categories">
+        {isLoggedIn ? <CategoryManager /> : <Redirect to="/login" />}
       </Route>
 
       <Route exact path="/ribbon">

@@ -1,5 +1,5 @@
 import React from "react";
-import { YouTubeSearch } from "./YouTube/YouTubeSearch";
+import { YouTubeSearch } from "./youtube/YouTubeSearch";
 import Logo from "../img/RibbonedWordOnly.png";
 
 export const Home = () => {

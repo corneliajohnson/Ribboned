@@ -6,5 +6,6 @@ namespace Ribboned.Repositories
     public interface ICategoryRepository
     {
         List<Category> GetAll();
+        List<Category> GetByUserId(int userId);
     }
 }

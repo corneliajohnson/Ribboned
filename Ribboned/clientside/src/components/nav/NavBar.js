@@ -41,6 +41,11 @@ export const NavBar = (props) => {
                 Add Ribbon
               </Link>
             </li>
+            <li className="navbar__item nav__addcategorylink">
+              <Link className="navbar__link" to="/categories">
+                Categories
+              </Link>
+            </li>
             <li className="navbar__item nav__ribbonlink">
               <Link className="navbar__link" to="/ribbons">
                 My Ribbons
