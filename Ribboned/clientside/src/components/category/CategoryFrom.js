@@ -20,20 +20,14 @@ export const CategoryForm = () => {
     setCategory(newCategory);
   };
 
-  //add to list after submit
-  useEffect(() => {
-    getCategories();
-  }, [category]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (category.id) {
       updateCategory(category);
-      //updateCategory(category);
     } else {
       addCategory(category);
     }
-    setCategory({ ...category, id: 0, name: "" });
+    setCategory({ ...category, id: 0, name: "", userProfileId: userId });
   };
 
   return (

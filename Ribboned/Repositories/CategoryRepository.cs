@@ -22,7 +22,7 @@ namespace Ribboned.Repositories
         public List<Category> GetByUserId(int userId)
         {
             return _context.Category.Include(c => c.UserProfile)
-                .Where(c => c.UserProfileId == userId).ToList();
+                .Where(c => c.UserProfileId == userId && c.Name != "Other").ToList();
         }
         
         public Category GetById(int id)

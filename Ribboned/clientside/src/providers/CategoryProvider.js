@@ -35,7 +35,7 @@ export const CategoryProvider = (props) => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(category),
-      });
+      }).then(getCategories);
     });
   };
 
@@ -48,7 +48,7 @@ export const CategoryProvider = (props) => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(category),
-      });
+      }).then(getCategories);
     });
   };
 
