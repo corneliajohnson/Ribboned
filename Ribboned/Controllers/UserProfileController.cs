@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Ribboned.Models;
 using Ribboned.Repositories;
 using System.Security.Claims;
@@ -7,6 +8,7 @@ namespace Ribboned.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserProfileController : ControllerBase
     {
         private readonly IUserProfileRepository _userProfileRepo;
@@ -21,7 +23,19 @@ namespace Ribboned.Controllers
         public IActionResult Post(UserProfile up)
         {
             _userProfileRepo.Add(up);
-            return CreatedAtAction("Get", new { id = up.Id }, up);
+            var newUser = CreatedAtAction("Get", new { id = up.Id }, up);
+
+            //add a category for all new users
+            var category = new Category()
+            {
+                Name = "Other",
+                UserProfileId = up.Id
+            };
+
+            _categoryRepo.Add(category);
+            CreatedAtAction("Get", new { category = category.Id }, category);
+
+            return newUser;
         }
 
         [HttpPut("{id}")]

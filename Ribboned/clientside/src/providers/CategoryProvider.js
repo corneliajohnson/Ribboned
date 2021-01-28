@@ -8,10 +8,10 @@ export const CategoryProvider = (props) => {
   const getToken = () => firebase.auth().currentUser.getIdToken();
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState({});
-  const userId = JSON.parse(localStorage.getItem("userProfile")).id;
   const apiUrl = "/api/category";
 
   const getCategories = () => {
+    const userId = JSON.parse(localStorage.getItem("userProfile")).id;
     getToken().then((token) =>
       fetch(`${apiUrl}/getbyuserid/${userId}`, {
         method: "GET",

@@ -1,7 +1,9 @@
 import React, { useState, useEffect, createContext } from "react";
+import { CategoryContext } from "./CategoryProvider";
 import { Spinner } from "reactstrap";
 import firebase from "firebase/app";
 import "firebase/auth";
+import { useContext } from "react/cjs/react.development";
 
 export const UserProfileContext = createContext();
 
