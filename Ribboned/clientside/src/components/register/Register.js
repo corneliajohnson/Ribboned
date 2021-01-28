@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Button, Input } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -36,7 +37,6 @@ export const Register = () => {
       })
       .catch((err) => {
         setLoading(false);
-        // toast.error("Invalid email");
       });
   };
 

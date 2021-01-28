@@ -23,7 +23,6 @@ namespace Ribboned.Controllers
         public IActionResult Post(UserProfile up)
         {
             _userProfileRepo.Add(up);
-            var newUser = CreatedAtAction("Get", new { id = up.Id }, up);
 
             //add a category for all new users
             var category = new Category()
@@ -35,7 +34,10 @@ namespace Ribboned.Controllers
             _categoryRepo.Add(category);
             CreatedAtAction("Get", new { category = category.Id }, category);
 
-            return newUser;
+            return CreatedAtAction(
+                nameof(GetUserProfile),
+                new { firebaseUserId = up.FirebaseUserId },
+                up);
         }
 
         [HttpPut("{id}")]

@@ -1,9 +1,7 @@
 import React, { useState, useEffect, createContext } from "react";
-import { CategoryContext } from "./CategoryProvider";
 import { Spinner } from "reactstrap";
 import firebase from "firebase/app";
 import "firebase/auth";
-import { useContext } from "react/cjs/react.development";
 
 export const UserProfileContext = createContext();
 
@@ -11,7 +9,7 @@ export const UserProfileProvider = (props) => {
   const apiUrl = "/api/userprofile";
 
   const userProfile = localStorage.getItem("userProfile");
-  const [isLoggedIn, setIsLoggedIn] = useState(userProfile !== null);
+  const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
 
   const [isFirebaseReady, setIsFirebaseReady] = useState(false);
   useEffect(() => {
@@ -28,7 +26,6 @@ export const UserProfileProvider = (props) => {
       .then((userProfile) => {
         localStorage.setItem("userProfile", JSON.stringify(userProfile));
         setIsLoggedIn(true);
-        return userProfile;
       });
   };
 
@@ -47,12 +44,14 @@ export const UserProfileProvider = (props) => {
       .auth()
       .createUserWithEmailAndPassword(userProfile.email, password)
       .then((createResponse) =>
-        saveUser({ ...userProfile, firebaseUserId: createResponse.user.uid })
+        saveUser({
+          ...userProfile,
+          firebaseUserId: createResponse.user.uid,
+        })
       )
       .then((savedUserProfile) => {
         localStorage.setItem("userProfile", JSON.stringify(savedUserProfile));
         setIsLoggedIn(true);
-        return savedUserProfile;
       });
   };
 
