@@ -34,7 +34,7 @@ export const CategoryForm = () => {
   return (
     <div className="col">
       <Card className="card mb-3">
-        <h2 className="m-3 text-center">Add A New Category</h2>
+        <h2 className="my-2 text-center">Add A New Category</h2>
         <Form onSubmit={handleSubmit}>
           <FormGroup className="m-3">
             <Input

@@ -20,7 +20,7 @@ export const CategoryList = () => {
       {categories.length === 0 ? (
         <p className="text-center">None</p>
       ) : (
-        <div className="row d-flex flex">
+        <div className="row justify-content-center">
           {categories.map((category) => (
             <CategoryDetail key={category.id} category={category} />
           ))}
