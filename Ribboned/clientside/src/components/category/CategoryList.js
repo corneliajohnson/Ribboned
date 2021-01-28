@@ -15,17 +15,17 @@ export const CategoryList = () => {
   }
 
   return (
-    <div class="list-group col w-50">
-      <li href="#" class="list-group-item list-group-item-action active">
-        All Categories
-      </li>
+    <>
+      <h3 className="text-center">All Categories</h3>
       {categories.length === 0 ? (
-        <li className="list-group-item list-group-item-action">None</li>
+        <p className="text-center">None</p>
       ) : (
-        categories.map((category) => (
-          <CategoryDetail key={category.id} category={category} />
-        ))
+        <div className="row d-flex flex">
+          {categories.map((category) => (
+            <CategoryDetail key={category.id} category={category} />
+          ))}
+        </div>
       )}
-    </div>
+    </>
   );
 };

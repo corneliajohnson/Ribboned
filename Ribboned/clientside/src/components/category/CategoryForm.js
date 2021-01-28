@@ -11,7 +11,6 @@ export const CategoryForm = () => {
     getCategories,
   } = useContext(CategoryContext);
   const userId = JSON.parse(localStorage.getItem("userProfile")).id;
-  // const [category, setCategory] = useState({ name: "", userProfileId: userId });
   const [loading, setLoading] = useState(false);
 
   const handleInputControl = (event) => {
@@ -23,17 +22,19 @@ export const CategoryForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (category.id) {
+      category.userProfileId = userId;
       updateCategory(category);
     } else {
+      category.userProfileId = userId;
       addCategory(category);
     }
-    setCategory({ ...category, id: 0, name: "", userProfileId: userId });
+    setCategory({ id: 0, name: "", userProfileId: userId });
   };
 
   return (
     <div className="col">
-      <Card className="card text-white bg-primary mb-3">
-        <h2 className="text-white m-3 text-center">Add A New Category</h2>
+      <Card className="card mb-3">
+        <h2 className="m-3 text-center">Add A New Category</h2>
         <Form onSubmit={handleSubmit}>
           <FormGroup className="m-3">
             <Input
@@ -41,7 +42,7 @@ export const CategoryForm = () => {
               name="name"
               value={category.name}
               onChange={handleInputControl}
-              required
+              required="required"
             />
             <FormText>You Cannot Add An Exact Duplicate</FormText>
           </FormGroup>

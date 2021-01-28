@@ -18,7 +18,7 @@ export const CategoryDelete = ({ category }) => {
   return (
     <>
       <Button
-        className="btn btn-danger"
+        className="btn btn-sm btn-danger"
         onClick={(e) => setPendingDelete(true)}
       >
         Delete

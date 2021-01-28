@@ -6,23 +6,26 @@ import { CategoryDelete } from "./CaregoryDelete";
 export const CategoryDetail = ({ category }) => {
   const { setCategory } = useContext(CategoryContext);
   return (
-    <li href="#" className="list-group-item list-group-item-action">
-      <div className="col-8">{category.name} </div>
-      <span className="float-right">
-        <Button
-          className="btn btn-info mx-3"
-          onClick={() =>
-            setCategory({
-              id: category.id,
-              name: category.name,
-              userProfileId: category.userProfileId,
-            })
-          }
-        >
-          Edit
-        </Button>
-        <CategoryDelete category={category} />
-      </span>
-    </li>
+    <>
+      <div className="col-lg-3 col-md-4 col-sm-6 border p-2">
+        <h5>{category.name} </h5>
+        <span className="float-right">
+          <Button
+            className="btn btn-sm mx-1"
+            color="primary"
+            onClick={() =>
+              setCategory({
+                id: category.id,
+                name: category.name,
+                userProfileId: category.userProfileId,
+              })
+            }
+          >
+            Edit
+          </Button>
+          <CategoryDelete category={category} />
+        </span>
+      </div>
+    </>
   );
 };
