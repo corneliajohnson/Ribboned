@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Ribboned.Models;
 using Ribboned.Repositories;
+using System.Linq;
 using System.Security.Claims;
 
 namespace Ribboned.Controllers
@@ -36,6 +37,7 @@ namespace Ribboned.Controllers
         {
             var currentUser = GetCurrentUserProfile();
             var category = _categoryRepo.GetById(id);
+
             if (category == null || category.UserProfileId != currentUser.Id)
             {
                 return NotFound();
@@ -65,6 +67,13 @@ namespace Ribboned.Controllers
         [HttpPost]
         public IActionResult Post(Category category)
         {
+            var userCategories = _categoryRepo.GetByUserId(category.UserProfileId);
+            //check for duplicates
+            if (userCategories.Any(c => c.Name.ToLower() == category.Name.ToLower()))
+            {
+                return BadRequest();
+            }
+
             _categoryRepo.Add(category);
             return CreatedAtAction("Get", new { id = category.Id }, category);
         }
@@ -81,6 +90,12 @@ namespace Ribboned.Controllers
             }
 
             if (id != category.Id)
+            {
+                return BadRequest();
+            }
+            var userCategories = _categoryRepo.GetByUserId(category.UserProfileId);
+            //check for duplicates
+            if (userCategories.Any(c => c.Name.ToLower() == category.Name.ToLower()))
             {
                 return BadRequest();
             }

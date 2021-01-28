@@ -33,7 +33,7 @@ export const CategoryForm = () => {
 
   return (
     <div className="col">
-      <Card className="card mb-3">
+      <Card className="card mb-3 shadow-lg bg-white rounded">
         <h2 className="my-2 text-center">Add A New Category</h2>
         <Form onSubmit={handleSubmit}>
           <FormGroup className="m-3">
@@ -44,7 +44,7 @@ export const CategoryForm = () => {
               onChange={handleInputControl}
               required="required"
             />
-            <FormText>You Cannot Add An Exact Duplicate</FormText>
+            <FormText>Duplicates will not be displayed.</FormText>
           </FormGroup>
           <Button className="btn-block" color="dark" disabled={loading}>
             submit
